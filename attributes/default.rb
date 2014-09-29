@@ -1,7 +1,7 @@
 # General settings
-default['sonar']['dir']                    = "/opt/sonar"
-default['sonar']['version']                = "2.11"
-default['sonar']['checksum']               = "9d05e25ca79c33d673004444d89c8770"
+default['sonar']['dir']                    = "/opt/sonarqube"
+default['sonar']['version']                = "4.4.1"
+default['sonar']['checksum']               = "eb4f54151cd6d1a49295b2c7c76499d4"
 default['sonar']['os_kernel']              = "linux-x86-32"
 default['sonar']['mirror']                 = "http://dist.sonar.codehaus.org"
 

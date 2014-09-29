@@ -21,31 +21,31 @@ include_recipe "java"
 
 package "unzip"
 
-remote_file "/opt/sonar-#{node['sonar']['version']}.zip" do
-  source "#{node['sonar']['mirror']}/sonar-#{node['sonar']['version']}.zip"
+remote_file "/opt/sonarqube-#{node['sonar']['version']}.zip" do
+  source "#{node['sonar']['mirror']}/sonarqube-#{node['sonar']['version']}.zip"
   mode "0644"
   checksum "#{node['sonar']['checksum']}"
-  not_if { ::File.exists?("/opt/sonar-#{node['sonar']['version']}.zip") }
+  not_if { ::File.exists?("/opt/sonarqube-#{node['sonar']['version']}.zip") }
 end
 
-execute "unzip /opt/sonar-#{node['sonar']['version']}.zip -d /opt/" do
-  not_if { ::File.directory?("/opt/sonar-#{node['sonar']['version']}/") }
+execute "unzip /opt/sonarqube-#{node['sonar']['version']}.zip -d /opt/" do
+  not_if { ::File.directory?("/opt/sonarqube-#{node['sonar']['version']}/") }
 end
 
-link "/opt/sonar" do
-  to "/opt/sonar-#{node['sonar']['version']}"
+link "/opt/sonarqube" do
+  to "/opt/sonarqube-#{node['sonar']['version']}"
 end
 
 service "sonar" do
-  stop_command "sh /opt/sonar/bin/#{node['sonar']['os_kernel']}/sonar.sh stop"
-  start_command "sh /opt/sonar/bin/#{node['sonar']['os_kernel']}/sonar.sh start"
-  status_command "sh /opt/sonar/bin/#{node['sonar']['os_kernel']}/sonar.sh status"
-  restart_command "sh /opt/sonar/bin/#{node['sonar']['os_kernel']}/sonar.sh restart"
+  stop_command "sh /opt/sonarqube/bin/#{node['sonar']['os_kernel']}/sonar.sh stop"
+  start_command "sh /opt/sonarqube/bin/#{node['sonar']['os_kernel']}/sonar.sh start"
+  status_command "sh /opt/sonarqube/bin/#{node['sonar']['os_kernel']}/sonar.sh status"
+  restart_command "sh /opt/sonarqube/bin/#{node['sonar']['os_kernel']}/sonar.sh restart"
   action :start
 end
 
 template "sonar.properties" do
-  path "/opt/sonar/conf/sonar.properties"
+  path "/opt/sonarqube/conf/sonar.properties"
   source "sonar.properties.erb"
   owner "root"
   group "root"
@@ -57,7 +57,7 @@ template "sonar.properties" do
 end
 
 template "wrapper.conf" do
-  path "/opt/sonar/conf/wrapper.conf"
+  path "/opt/sonarqube/conf/wrapper.conf"
   source "wrapper.conf.erb"
   owner "root"
   group "root"
