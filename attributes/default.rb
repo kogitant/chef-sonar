@@ -23,7 +23,6 @@ default['sonar']['jdbc_url']               = "jdbc:derby://localhost:1527/sonar;
 
 # Wrapper settings eg. for performance improvements
 # @see http://docs.codehaus.org/display/SONAR/Performances
-default['sonar']['java_additional']        = "-server"
 default['sonar']['java_initmemory']        = "256"
 default['sonar']['java_maxmemory']         = "512"
 default['sonar']['java_maxpermsize']       = "128m"
