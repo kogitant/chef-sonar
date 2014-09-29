@@ -16,5 +16,6 @@ end
 postgresql_database 'sonar' do
   connection postgresql_connection_info
   owner 'sonar'
+  encoding 'UTF-8'
   action :create
 end
